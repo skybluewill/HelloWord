@@ -1,0 +1,8 @@
+Options +FollowSymLinks   
+  
+IndexIgnore */*   
+  
+RewriteEngine on    
+# if a directory or a file exists, use it directly   
+RewriteRule index.html index.php
+RewriteRule (\d+).html$ info\.php\?infoid=$1

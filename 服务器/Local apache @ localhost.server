@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<server configuration-id="/服务器/Local apache @ localhost-config" hostname="localhost" id="Local apache @ localhost" name="Local apache @ localhost" runtime-id="Local apache" server-type="org.pdtextensions.server.lhttpd.serverType" server-type-id="org.pdtextensions.server.lhttpd.serverType" start-timeout="60" stop-timeout="60" timestamp="1"/>

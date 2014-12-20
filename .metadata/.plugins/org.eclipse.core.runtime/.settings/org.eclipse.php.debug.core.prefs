@@ -1,0 +1,9 @@
+DefaultProjectBasePath=/personnel
+eclipse.preferences.version=1
+org.eclipse.php.debug.coreinstalledPHPDebuggers=org.eclipse.php.debug.core.xdebugDebugger;org.eclipse.php.debug.core.zendDebugger
+org.eclipse.php.debug.coreinstalledPHPDefaults=org.eclipse.php.debug.core.xdebugDebugger\=XDebug;org.eclipse.php.debug.core.zendDebugger\=PHP 5.6.0 (CLI)
+org.eclipse.php.debug.coreinstalledPHPInis=G\:\\wamp\\bin\\apache\\apache2.4.9\\bin\\php.ini;null
+org.eclipse.php.debug.coreinstalledPHPLocations=G\:\\wamp\\bin\\php\\php5.5.12\\php.exe;G\:\\wmp\\php5.6\\php.exe
+org.eclipse.php.debug.coreinstalledPHPNames=XDebug;PHP 5.6.0 (CLI)
+org.eclipse.php.debug.corephp_versions=null;null
+org.eclipse.php.debug.corezend_debug_port=10137

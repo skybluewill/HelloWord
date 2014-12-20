@@ -1,0 +1,71 @@
+<?php
+	require 'config.php';
+	$name = $_POST['name'];
+	$mode = $_POST['mode'];
+	//echo 1111;exit;
+	if(empty($name)){
+		ErrAlert('你未输入姓名哦');
+		exit;
+	}
+
+	$pdo = new PDO($dsn,$user,$password);
+	$InitCondition = 'EmployeeMsg.ChineseName like ';
+	//$sql = "select top 1 * from EmployeeMsg where ChineseName like '%$name'";
+	//$sql = "select count(*) from EmployeeMsg where EmployeeMsg.ChineseName like ";
+	$sql = "select
+			EmployeeMsg.ChineseName,EmployeeMsg.EmployeeCode,
+			DataDepartment.DepartmentName,ClassGroup.ClassGroupName,DataDetail.Item,
+			EmployeeMsg.ContactAddr,EmployeeMsg.IDcard,
+			EmployeeMsg.MyField1,EmployeeMsg.StayBegin
+			from
+			EmployeeMsg left join DataDepartment
+			on EmployeeMsg.Department = DataDepartment.DepartmentID
+			left join ClassGroup
+			on EmployeeMsg.ClassGroupID = ClassGroup.ClassGroupID
+			left join DataDetail
+			on EmployeeMsg.Principalship = DataDetail.DetailID
+
+			where ";
+	switch ($mode){
+
+		case 1 :						//精确查找
+			$varName = $name;
+		break;
+
+		case 2 :						//姓氏查找
+			$varName = $name.'%';
+		break;
+
+		case 3 :						//模糊查找
+			$varName = '%'.$name.'%';
+		break;
+
+		default :
+			ErrAlert('未能正确解析你搜索模式，难道你用了BUG模式？');
+
+	}
+	$condition = $InitCondition."'$varName'";
+	$sql = $sql.$condition;
+	//echo $sql;
+	if(!VarData($pdo, 'EmployeeMsg', $condition)){
+		ErrAlert('查询出错');
+		exit;
+	}
+
+	$rs  = $pdo -> query($sql);
+	if(!$rs){
+		$err = $pdo -> errorInfo();
+		print_r($err);
+		exit;
+	}
+
+	//$colcount = $rs -> columnCount();
+	//echo $colcount;
+	while($temp = $rs->fetch(PDO::FETCH_ASSOC)){
+	    $data[] = $temp;
+	}
+	//echo '11111111111111';
+	include './html/EmployeeSearchTable.html';
+
+
+?>
